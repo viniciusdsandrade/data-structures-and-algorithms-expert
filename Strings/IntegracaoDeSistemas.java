@@ -1,5 +1,7 @@
 package Strings;
 
+import static java.lang.Integer.parseInt;
+
 public class IntegracaoDeSistemas {
 
     /*
@@ -134,14 +136,68 @@ public class IntegracaoDeSistemas {
     ]
      */
 
+
+    /// Converts an array of CSV-formatted strings (representing video data) into a formatted JSON array.
+    ///
+    /// Each element in the `videos` array should be a single CSV line with the following format:
+    /// ```text
+    /// id,titleWithPrefixAndSuffix.mp4,duration
+    /// ```
+    ///
+    /// The method performs the following adjustments on each video's data:
+    ///
+    /// - **ID**: Included as-is from the CSV.
+    /// - **Title**: The first 6 characters represent chapter and lesson numbering (e.g., `01-01 `).
+    ///   These characters are removed, and the trailing `.mp4` extension is also stripped. The resulting
+    ///   title excludes numeric prefixes and the file extension.
+    /// - **Duration**: Parsed from the CSV and included as an integer.
+    ///
+    /// Example transformation:
+    ///
+    /// Given an input line (CSV):
+    /// ```text
+    /// 4668c219-296d-40de-a073-99b85026e977,01-01 Visão geral do capítulo.mp4,222
+    /// ```
+    /// The resulting JSON object will be:
+    /// ```json
+    /// {
+    ///   "id": "4668c219-296d-40de-a073-99b85026e977",
+    ///   "title": "Visão geral do capítulo",
+    ///   "duration": 222
+    /// }
+    /// ```
+    ///
+    /// The entire output is a JSON array containing all such objects:
+    /// ```json
+    /// [
+    ///   {
+    ///     "id": "4668c219-296d-40de-a073-99b85026e977",
+    ///     "title": "Visão geral do capítulo",
+    ///     "duration": 222
+    ///   },
+    ///   {
+    ///     "id": "81be4133-f81a-443a-96f3-0c30d7460ab8",
+    ///     "title": "Algoritmos e Lógica de Programação",
+    ///     "duration": 396
+    ///   },
+    ///   ...
+    /// ]
+    /// ```
+    ///
+    /// @param videos an array of CSV lines, each including an ID, a title with a numeric prefix and `.mp4` suffix, and a duration.
+    /// @return a `String` containing the formatted JSON array with the cleaned `id`, `title`, and `duration` fields.
     public static String csvToJson(String[] videos) {
         StringBuilder json = new StringBuilder("[\n");
 
+        String[] videoData;
+        String id, title;
+        int duration;
+
         for (String video : videos) {
-            String[] videoData = video.split(",");
-            String id = videoData[0];
-            String title = videoData[1].substring(6, videoData[1].length() - 4);
-            int duration = Integer.parseInt(videoData[2]);
+            videoData = video.split(",");
+            id = videoData[0];
+            title = videoData[1].substring(6, videoData[1].length() - 4);
+            duration = parseInt(videoData[2]);
 
             json.append("    {\n");
             json.append("        \"id\": \"").append(id).append("\",\n");
@@ -177,7 +233,6 @@ public class IntegracaoDeSistemas {
         };
 
         String json = csvToJson(videos);
-
         System.out.println(json);
     }
 }
