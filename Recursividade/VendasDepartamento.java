@@ -10,6 +10,7 @@ import static java.util.Arrays.asList;
 public class VendasDepartamento {
 
     /*
+
     DESAFIO: Vendas do departamento
     Forma de entrega: link do programa salvo no Gist do Github
     Linguagens aceitas: Javascript, Java, C#, Python
@@ -37,6 +38,7 @@ public class VendasDepartamento {
 
     3 VENDAS
     TOTAL = $ 1781.30
+
      */
 
     public static double[] totalSales(List<String> sales, String department) {
