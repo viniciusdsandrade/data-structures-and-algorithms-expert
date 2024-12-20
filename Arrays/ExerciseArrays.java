@@ -16,6 +16,7 @@ public class ExerciseArrays {
 
     entrada: nums = [1,0,1,1,0,1]
     saída: 2
+    -------------------------------------------------------------------------------------------------
     Produto escalar de dois vetores (dot-product-two-arrays) (Adaptado Leetcode)
     Dados dois arrays, calcule o seu produto escalar.
 
@@ -33,6 +34,8 @@ public class ExerciseArrays {
 
     entrada: nums1 = [0,1,0,0,2,0,0], nums2 = [1,0,0,0,3,0,4]
     saída: 0
+
+    ----------------------------------------------------------------------------------------------------
     Encontre números com número par de dígitos (find-even-number-digits) (Leetcode)
     Dado um array nums de inteiros, retorne quantos deles contêm um número par de dígitos.
 
@@ -144,11 +147,43 @@ public class ExerciseArrays {
         return max;
     }
 
+    public static int ScalarProduct(int[] nums1, int[] nums2) {
+        int result = 0;
+        for (int i = 0; i < nums1.length; i++)
+            result += nums1[i] * nums2[i];
+        return result;
+    }
+
     public static void main(String[] ignoredArgs) {
         int[] nums = {1, 1, 0, 1, 1, 1};
         System.out.println(findMaxConsecutiveOnes(nums));
 
         int[] nums1 = {1, 0, 1, 1, 0, 1};
         System.out.println(findMaxConsecutiveOnes(nums1));
+
+
+        // Exemplo 1
+        int[] nums1_ex1 = {1, 0, 0, 2, 3};
+        int[] nums2_ex1 = {0, 3, 0, 4, 0};
+        System.out.println("Exemplo 1:");
+        System.out.println("Entrada: nums1 = [1,0,0,2,3], nums2 = [0,3,0,4,0]");
+        System.out.println("Saída: " + ScalarProduct(nums1_ex1, nums2_ex1));
+        System.out.println("Explicação: (1*0) + (0*3) + (0*0) + (2*4) + (3*0) = 8\n");
+
+        // Exemplo 2
+        int[] nums1_ex2 = {0, 1, 0, 0, 0};
+        int[] nums2_ex2 = {0, 1, 0, 0, 0};
+        System.out.println("Exemplo 2:");
+        System.out.println("Entrada: nums1 = [0,1,0,0,0], nums2 = [0,1,0,0,0]");
+        System.out.println("Saída: " + ScalarProduct(nums1_ex2, nums2_ex2));
+        System.out.println("Explicação: (0*0) + (1*1) + (0*0) + (0*0) + (0*0) = 1\n");
+
+        // Exemplo 3
+        int[] nums1_ex3 = {0, 1, 0, 0, 2, 0, 0};
+        int[] nums2_ex3 = {1, 0, 0, 0, 3, 0, 4};
+        System.out.println("Exemplo 3:");
+        System.out.println("Entrada: nums1 = [0,1,0,0,2,0,0], nums2 = [1,0,0,0,3,0,4]");
+        System.out.println("Saída: " + ScalarProduct(nums1_ex3, nums2_ex3));
+        System.out.println("Explicação: (0*1) + (1*0) + (0*0) + (0*0) + (2*3) + (0*0) + (0*4) = 6");
     }
 }
