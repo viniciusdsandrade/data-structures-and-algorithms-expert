@@ -1,5 +1,7 @@
 package Recursividade;
 
+import static java.lang.System.nanoTime;
+
 public class Fibonacci {
 
     /*
@@ -32,6 +34,21 @@ public class Fibonacci {
         return fib(n - 1) + fib(n - 2);
     }
 
+    public static long fibIterativo(int n) {
+        if (n == 0) return 0L;
+        else if (n == 1) return 1L;
+
+        long a = 0, b = 1, c = 0;
+
+        for (int i = 2; i <= n; i++) {
+            c = a + b;
+            a = b;
+            b = c;
+        }
+
+        return c;
+    }
+
     public static void main(String[] args) {
         for (int i = 0; i < 46; i++) testFibonacci(i);
     }
@@ -39,21 +56,49 @@ public class Fibonacci {
     public static void testFibonacci(int n) {
         System.out.println("\nInput:   " + n);
 
-        long res, start, end, runtime;
+        long resultadoRecursivo, tempoInicioRecursivo, tempoFimRecursivo, duracaoRecursivo;
+        long resultadoIterativo, tempoInicioIterativo, tempoFimIterativo, duracaoIterativo;
 
-        start = System.nanoTime();
-        res = fib(n);
-        end = System.nanoTime();
+        // Medir tempo para a versão iterativa
+        tempoInicioIterativo = nanoTime();
+        resultadoIterativo = fibIterativo(n);
+        tempoFimIterativo = nanoTime();
+        duracaoIterativo = tempoFimIterativo - tempoInicioIterativo;
 
-        runtime = end - start;
+        // Medir tempo para a versão recursiva
+        tempoInicioRecursivo = nanoTime();
+        resultadoRecursivo = fib(n);
+        tempoFimRecursivo = nanoTime();
+        duracaoRecursivo = tempoFimRecursivo - tempoInicioRecursivo;
 
-        System.out.println("Output:  " + res);
+        // Imprimir o resultado (supondo que ambas as versões retornem o mesmo valor)
+        System.out.println("OutputRecursivo:  " + resultadoRecursivo);
+        System.out.println("OutputIterativo:  " + resultadoIterativo);
 
-        if (runtime >= 1_000_000_000L) {
-            double segundos = runtime / 1_000_000_000.0;
-            System.out.printf("Runtime: %.3f s\n\n", segundos);
+        // Exibir tempo de execução para a versão iterativa
+        if (duracaoIterativo >= 1_000_000_000L) {
+            double segundosIterativo = duracaoIterativo / 1_000_000_000.0;
+            System.out.printf("Runtime Iterativo: %.3f s\n", segundosIterativo);
         } else {
-            System.out.println("Runtime: " + runtime + " ns\n");
+            System.out.println("Runtime Iterativo: " + duracaoIterativo + " ns");
+        }
+
+        // Exibir tempo de execução para a versão recursiva
+        if (duracaoRecursivo >= 1_000_000_000L) {
+            double segundosRecursivo = duracaoRecursivo / 1_000_000_000.0;
+            System.out.printf("Runtime Recursivo: %.3f s\n", segundosRecursivo);
+        } else {
+            System.out.println("Runtime Recursivo: " + duracaoRecursivo + " ns");
+        }
+
+        // Calcular a razão entre os tempos de execução
+        double razao;
+
+        if (duracaoIterativo != 0) { // Evitar divisão por zero
+            razao = (double) duracaoRecursivo / duracaoIterativo;
+            System.out.printf("Razão (Recursivo / Iterativo): %.3f\n\n", razao);
+        } else {
+            System.err.println("Não foi possível calcular a razão devido a duração iterativa igual a zero.\n");
         }
     }
 }
