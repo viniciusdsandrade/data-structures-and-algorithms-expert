@@ -92,9 +92,19 @@ public class Fibonacci {
         tempoFimRecursivo = nanoTime();
         duracaoRecursivo = tempoFimRecursivo - tempoInicioRecursivo;
 
-        // Imprimir o resultado (supondo que ambas as versões retornem o mesmo valor)
-        System.out.println("OutputRecursivo:  " + resultadoRecursivo);
-        System.out.println("OutputIterativo:  " + resultadoIterativo);
+        // Medir tempo para a versão BigInteger
+        long tempoInicioBig, tempoFimBig, duracaoBig;
+        BigInteger resultadoBig;
+
+        tempoInicioBig = nanoTime();
+        resultadoBig = fibBigInteger(n);
+        tempoFimBig = nanoTime();
+        duracaoBig = tempoFimBig - tempoInicioBig;
+
+        // Imprimir resultados
+        System.out.println("OutputRecursivo:   " + resultadoRecursivo);
+        System.out.println("OutputIterativo:   " + resultadoIterativo);
+        System.out.println("OutputBigInteger:  " + resultadoBig);
 
         // Exibir tempo de execução para a versão iterativa
         if (duracaoIterativo >= 1_000_000_000L) {
@@ -112,14 +122,28 @@ public class Fibonacci {
             System.out.println("Runtime Recursivo: " + duracaoRecursivo + " ns");
         }
 
-        // Calcular a razão entre os tempos de execução
-        double razao;
-
-        if (duracaoIterativo != 0) { // Evitar divisão por zero
-            razao = (double) duracaoRecursivo / duracaoIterativo;
-            System.out.printf("Razão (Recursivo / Iterativo): %.3f\n\n", razao);
+        // Exibir tempo de execução para a versão BigInteger
+        if (duracaoBig >= 1_000_000_000L) {
+            double segundosBig = duracaoBig / 1_000_000_000.0;
+            System.out.printf("Runtime BigInteger: %.3f s\n", segundosBig);
         } else {
-            System.err.println("Não foi possível calcular a razão devido a duração iterativa igual a zero.\n");
+            System.out.println("Runtime BigInteger: " + duracaoBig + " ns");
+        }
+
+        // Calcular a razão entre os tempos de execução (Recursivo / Iterativo)
+        if (duracaoIterativo != 0) { // Evitar divisão por zero
+            double razaoRecIter = (double) duracaoRecursivo / duracaoIterativo;
+            System.out.printf("Razão (Recursivo / Iterativo): %.3f\n", razaoRecIter);
+        } else {
+            System.err.println("Não foi possível calcular a razão (Rec/Iter) devido a duração iterativa igual a zero.");
+        }
+
+        // Calcular a razão entre os tempos de execução (BigInteger / Iterativo)
+        if (duracaoIterativo != 0) {
+            double razaoBigIter = (double) duracaoBig / duracaoIterativo;
+            System.out.printf("Razão (BigInteger / Iterativo): %.3f\n", razaoBigIter);
+        } else {
+            System.err.println("Não foi possível calcular a razão (Big/Iter) devido a duração iterativa igual a zero.");
         }
     }
 }
