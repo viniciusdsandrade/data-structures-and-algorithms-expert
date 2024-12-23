@@ -71,7 +71,49 @@ public class Fibonacci {
     }
 
     public static void main(String[] args) {
-        for (int i = 0; i < 46; i++) testFibonacci(i);
+        testFibBigIntegerLimits(0, 1_000_000, 1_000);
+        for (int i = 0; i < 10; i++) testFibonacci(i);
+    }
+
+
+    public static void testFibBigIntegerLimits(int minN, int maxN, int incremento) {
+        System.out.println("Testando fibBigInteger com valores de n de " + minN + " até " + maxN + " com incremento de " + incremento + "...\n");
+
+        // Captura de possíveis erros de memória
+        try {
+            for (int n = minN; n <= maxN; n += incremento) {
+                long tempoInicio = nanoTime();
+
+                // Calcular o Fibonacci usando BigInteger
+                BigInteger fibVal = fibBigInteger(n);
+
+                long tempoFim = nanoTime();
+                long duracao = tempoFim - tempoInicio;
+
+                // Quantos dígitos em decimal esse Fibonacci tem
+                int numeroDigitos = fibVal.toString().length();
+
+                // Converter duração para segundos
+                double segundos = duracao / 1_000_000_000.0;
+
+                // Exibir informações
+                System.out.printf("Fib(%d) calculado! | #Digitos: %d | Tempo: %.3fs\n",
+                        n, numeroDigitos, segundos);
+
+                // Critério de parada: se demorar mais de 10 segundos para uma iteração
+                if (segundos > 10.0) {
+                    System.out.println("\nDemorou mais de 10 segundos para calcular Fib(" + n + "). Encerrando os testes...");
+                    break;
+                }
+            }
+        } catch (OutOfMemoryError e) {
+            System.err.println("\nOutOfMemoryError atingido! Memória insuficiente para continuar os testes.");
+        } catch (Exception e) {
+            System.err.println("\nOcorreu um erro inesperado: " + e.getMessage());
+            System.err.println(e.getMessage());
+        }
+
+        System.out.println("\nTeste finalizado.");
     }
 
     public static void testFibonacci(int n) {
