@@ -1,6 +1,10 @@
 package Recursividade;
 
+import java.math.BigInteger;
+
 import static java.lang.System.nanoTime;
+import static java.math.BigInteger.ONE;
+import static java.math.BigInteger.ZERO;
 
 public class Fibonacci {
 
@@ -42,6 +46,23 @@ public class Fibonacci {
 
         for (int i = 2; i <= n; i++) {
             c = a + b;
+            a = b;
+            b = c;
+        }
+
+        return c;
+    }
+
+    public static BigInteger fibBigInteger(int n) {
+        if (n == 0) return ZERO;
+        else if (n == 1) return ONE;
+
+        BigInteger a = ZERO;
+        BigInteger b = ONE;
+        BigInteger c = ZERO;
+
+        for (int i = 2; i <= n; i++) {
+            c = a.add(b);
             a = b;
             b = c;
         }
