@@ -63,12 +63,12 @@ public static void main(String[] ignoredArgs) {
 
         long quickTime = endQuick - startQuick;
 
-        // agora quero que converta para milisegundos com 3 casas decimais
+        // 5. Conversão para milissegundos com 3 casas decimais
         double insertionTimeMs = insertionTime / 1_000_000.0;
         double bubbleTimeMs = bubbleTime / 1_000_000.0;
         double quickTimeMs = quickTime / 1_000_000.0;
 
-        // 5. Exibir relatório
+        // 6. Exibir relatório
         System.out.printf("Insertion sort: %.3f ms%n", insertionTimeMs);
         System.out.printf("Bubble sort: %.3f ms%n", bubbleTimeMs);
         System.out.printf("Quick sort: %.3f ms%n", quickTimeMs);
