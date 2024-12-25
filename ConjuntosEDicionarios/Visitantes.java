@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Visitantes {
+
     /*
     Problema "visitantes"
     Fazer uma função que receba uma lista de registros de log de acesso a um website,
@@ -50,7 +51,7 @@ public class Visitantes {
             // Aplica a função existente para contar visitantes únicos
             return total(visitors);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Erro ao ler o arquivo JSON: " + e.getMessage());
             return -1; // Em caso de erro, retorna -1 ou lança uma exceção
         }
     }
