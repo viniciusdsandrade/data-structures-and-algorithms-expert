@@ -16,9 +16,11 @@ public class BancoDeDadosSemORM {
     Você foi contratado para trabalhar em um sistema legado que não utiliza ferramenta de ORM (mapeamento
     objeto-relacional) para acessar o banco de dados, ou seja, a tradução dos dados entre o formato relacional
     (tabelas) para objetos em memória, deve ser feita programaticamente pelos desenvolvedores.
-    Assim, quando uma consulta é feita ao banco de dados, os dados são retornado em forma tabular, e esses dados
+
+    Assim, quando uma consulta é feita ao banco de dados, os dados são retornados em forma tabular, e esses dados
     precisam ser convertidos para objetos em memória. Por exemplo, os dados abaixo são os registros resultantes de
     uma consulta ao banco de dados para retornar os departamentos e seus respectivos funcionários:
+
     Você deve criar uma função convertRecords (veja assinaturas ao final deste documento). Esta função deve
     receber um array dos registros acima no formato CSV, e deve retornar uma lista de objetos do tipo Department,
     ordenados por nome, e associados com seus respectivos funcionários (objetos tipo Employee) na ordem em que
@@ -32,9 +34,10 @@ public class BancoDeDadosSemORM {
     departamento:
 
     Atenção: não pode haver instanciação repetida de departamentos. Você deve manter os departamentos já
-    instanciados em um dicionário pois, durante o processamento, se surgir um novo funcionário de um mesmo
+    instanciados em um dicionário, pois, durante o processamento, se surgir um novo funcionário de um mesmo
     departamento já instanciado, este novo funcionário deverá apontar para o mesmo departamento. Assim, o
     dicionário vai permitir a recuperação eficiente dos departamentos já instanciados.
+
     Você deve criar a função convertRecords já mencionada, e você deve criar um programa para navegar na lista
     resultante da função convertRecords, mostrando um relatório na saída, conforme exemplo abaixo.
 ---------------------------------------------------------------------------------------------------------------
