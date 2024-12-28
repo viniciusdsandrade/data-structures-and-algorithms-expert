@@ -58,22 +58,18 @@ class Department {
         return hash;
     }
 
-    // Department.java
     @Override
     public final String toString() {
         StringBuilder sb = new StringBuilder();
 
-        // 1) Nome do departamento + dois pontos + quebra de linha
         sb.append(name).append(":\n");
 
-        // 2) Para cada funcionário, chamar e.toString() com indentação
         for (Employee e : employees) {
             sb.append("    ")
                     .append(e.toString())
-                    .append("\n"); // quebra de linha ao final de cada funcionário
+                    .append("\n");
         }
 
         return sb.toString();
     }
-
 }

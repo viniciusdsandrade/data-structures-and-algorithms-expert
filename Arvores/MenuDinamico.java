@@ -143,8 +143,6 @@ public class MenuDinamico {
 
             return clone;
         }
-
-
     }
 
     static GenericTree<MenuItem> generateTree(String[] records) {
