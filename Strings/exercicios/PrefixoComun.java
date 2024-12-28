@@ -7,6 +7,7 @@ import static java.lang.System.nanoTime;
 public class PrefixoComun {
 
     /*
+
     Problema "prefixo-comum" (ref: Leetcode longest-common-prefix)
     Empresas: Apple, Google, Amazon, Microsoft, Adobe, Accenture, etc.
 
@@ -19,17 +20,15 @@ public class PrefixoComun {
         ● strs[i] consists of only lowercase English letters.
 
     Exemplo 1:
-
     Entrada: ["flowers","flow","flight"]
     Saída: "fl"
 
     Exemplo 2:
-
     Entrada: ["dog","racecar","car"]
     Saída: ""
 
-    Assinaturas:
-    Java: public static String longestCommonPrefix(String[] v)
+    Assinatura: public static String longestCommonPrefix(String[] v)
+
      */
 
     public static String longestCommonPrefix(String[] v) {
@@ -46,7 +45,6 @@ public class PrefixoComun {
         for (int i = 1; i < v.length; i++) {
 
             // Enquanto a string atual não começar com o prefixo
-            // Usa startsWith que é mais direto para verificar prefixos do que indexOf
             // Remove um caractere por vez do final até encontrar um prefixo válido
             while (!v[i].startsWith(prefixo))
                 prefixo = prefixo.substring(0, prefixo.length() - 1);
