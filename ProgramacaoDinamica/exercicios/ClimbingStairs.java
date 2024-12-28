@@ -1,7 +1,6 @@
 package exercicios;
 
 import static java.lang.System.nanoTime;
-import static java.util.stream.IntStream.range;
 
 public class ClimbingStairs {
 
@@ -54,7 +53,9 @@ public class ClimbingStairs {
      */
 
     public static void main(String[] ignoredArgs) {
-        range(1, 46).forEach(ClimbingStairs::testClimbStairs);
+        for (int i = 4; i < 7; i++) {
+            testClimbStairs(i);
+        }
     }
 
     public static int climbStairs(int n) {
