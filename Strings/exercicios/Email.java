@@ -30,7 +30,7 @@ public class Email {
 
      */
 
-    public record EmailInfo(String username, String domain, boolean isBrazilian) {
+    record EmailInfo(String username, String domain, boolean isBrazilian) {
 
         @Override
         public String toString() {
@@ -42,7 +42,7 @@ public class Email {
         }
     }
 
-    public static EmailInfo extractEmailInformation(String email) {
+    static EmailInfo extractEmailInformation(String email) {
         String[] parts = email.split("@");
         String username = parts[0];
         String domain = parts[1];
@@ -50,7 +50,7 @@ public class Email {
         return new EmailInfo(username, domain, isBrazilian);
     }
 
-    public static void testExtractEmailInformation(String email) {
+    static void testExtractEmailInformation(String email) {
         System.out.println("\nInput:   " + email);
 
         long startTime, endTime, runtime;
@@ -66,7 +66,7 @@ public class Email {
         System.out.println("Runtime: " + runtime + " ns\n");
     }
 
-    public static void main(String[] ignoredArgs) {
+    static void main(String[] ignoredArgs) {
         String email1 = "joao.silva23@yahoo.com.br";
         String email2 = "maria123@gmail.com";
 

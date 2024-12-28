@@ -66,7 +66,7 @@ public class CPF {
         return result.toString();
     }
 
-    public static void testAllMethods(String str) {
+    static void testAllMethods(String str) {
         System.out.println("\nTesting string: " + str);
         System.out.println("------------------------------------------------");
 
@@ -117,8 +117,7 @@ public class CPF {
         System.out.println("Runtime: " + runtimes[fastestIndex] + " ns\n");
     }
 
-
-    public static void main(String[] args) {
+    static void main(String[] ignoredArgs) {
         String[] testStrings = {
                 "123.456-7890",
                 "987-65.4321",

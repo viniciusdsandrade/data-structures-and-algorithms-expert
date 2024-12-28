@@ -141,7 +141,7 @@ public class IntegracaoDeSistemas {
     /// Each element in the `videos` array should be a single CSV line with the following format:
     /// ```text
     /// id,titleWithPrefixAndSuffix.mp4,duration
-    /// ```
+    ///```
     ///
     /// The method performs the following adjustments on each video's data:
     ///
@@ -156,32 +156,32 @@ public class IntegracaoDeSistemas {
     /// Given an input line (CSV):
     /// ```text
     /// 4668c219-296d-40de-a073-99b85026e977,01-01 Visão geral do capítulo.mp4,222
-    /// ```
+    ///```
     /// The resulting JSON object will be:
     /// ```json
-    /// {
+    ///{
     ///   "id": "4668c219-296d-40de-a073-99b85026e977",
     ///   "title": "Visão geral do capítulo",
     ///   "duration": 222
-    /// }
-    /// ```
+    ///}
+    ///```
     ///
     /// The entire output is a JSON array containing all such objects:
     /// ```json
-    /// [
-    ///   {
+    ///[
+    ///{
     ///     "id": "4668c219-296d-40de-a073-99b85026e977",
     ///     "title": "Visão geral do capítulo",
     ///     "duration": 222
-    ///   },
-    ///   {
+    ///},
+    ///{
     ///     "id": "81be4133-f81a-443a-96f3-0c30d7460ab8",
     ///     "title": "Algoritmos e Lógica de Programação",
     ///     "duration": 396
-    ///   },
+    ///},
     ///   ...
-    /// ]
-    /// ```
+    ///]
+    ///```
     ///
     /// @param videos an array of CSV lines, each including an ID, a title with a numeric prefix and `.mp4` suffix, and a duration.
     /// @return a `String` containing the formatted JSON array with the cleaned `id`, `title`, and `duration` fields.
@@ -211,7 +211,7 @@ public class IntegracaoDeSistemas {
         return json.toString();
     }
 
-    public static void main(String[] ignoredArgs) {
+    static void main(String[] ignoredArgs) {
 
         String[] videos = {
                 "4668c219-296d-40de-a073-99b85026e977,01-01 Visão geral do capítulo.mp4,222",
