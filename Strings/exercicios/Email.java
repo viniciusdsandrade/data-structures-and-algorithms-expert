@@ -1,43 +1,46 @@
 package Strings.exercicios;
 
+import static java.lang.System.nanoTime;
+
 public class Email {
 
     /*
 
     Problema "dominio-email"
-    Dado um email de uma pessoa, mostrar o nome de usuário e o domínio deste email. O programa deve também informar se o domínio é brasileiro (.br). Supor um email válido.
+    Dado um email de uma pessoa, mostrar o nome de usuário e o domínio deste email.
+    O programa deve também informar se o domínio é brasileiro (.br). Supor um email válido.
 
     Exemplo 1:
     Entrada
+         joao.silva23@yahoo.com.br
+        Usuario: joao.silva23
+        Dominio: yahoo.com.br
     Saída
-    joao.silva23@yahoo.com.br
-    Usuario: joao.silva23
-    Dominio: yahoo.com.br
-    Brasileiro: sim
+        Brasileiro: sim
 
     Exemplo 2:
     Entrada
+        maria123@gmail.com
+        Usuario: maria123
+        Dominio: gmail.com
     Saída
-    maria123@gmail.com
-    Usuario: maria123
-    Dominio: gmail.com
-    Brasileiro: nao
+        Brasileiro: nao
 
-    Assinaturas:
-    Java: public static EmailInfo extractEmailInformation(String email)
+    Assinatura: public static EmailInfo extractEmailInformation(String email)
+
      */
 
     public record EmailInfo(String username, String domain, boolean isBrazilian) {
 
         @Override
-            public String toString() {
-                return "EmailInfo{" +
-                       "username='" + username + '\'' +
-                       ", domain='" + domain + '\'' +
-                       ", isBrazilian=" + isBrazilian +
-                       '}';
-            }
+        public String toString() {
+            return "EmailInfo{" +
+                   "username='" + username + '\'' +
+                   ", domain='" + domain + '\'' +
+                   ", isBrazilian=" + isBrazilian +
+                   '}';
         }
+    }
 
     public static EmailInfo extractEmailInformation(String email) {
         String[] parts = email.split("@");
@@ -47,11 +50,27 @@ public class Email {
         return new EmailInfo(username, domain, isBrazilian);
     }
 
-    public static void main(String[] ignoredArgs) {
-        EmailInfo info = extractEmailInformation("joao.silva23@yahoo.com.br");
-        System.out.println("Usuario: " + info);
+    public static void testExtractEmailInformation(String email) {
+        System.out.println("\nInput:   " + email);
 
-        info = extractEmailInformation("maria123@gmail.com");
-        System.out.println("Usuario: " + info);
+        long startTime, endTime, runtime;
+        EmailInfo result;
+
+        startTime = nanoTime();
+        result = extractEmailInformation(email);
+        endTime = nanoTime();
+
+        runtime = endTime - startTime;
+
+        System.out.println("Output:  " + result.isBrazilian());
+        System.out.println("Runtime: " + runtime + " ns\n");
+    }
+
+    public static void main(String[] ignoredArgs) {
+        String email1 = "joao.silva23@yahoo.com.br";
+        String email2 = "maria123@gmail.com";
+
+        testExtractEmailInformation(email1);
+        testExtractEmailInformation(email2);
     }
 }

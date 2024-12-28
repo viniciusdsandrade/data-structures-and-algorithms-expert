@@ -5,10 +5,8 @@ import static java.lang.Integer.parseInt;
 public class IntegracaoDeSistemas {
 
     /*
-    DESAFIO: Integração de sistemas
 
-    Forma de entrega: link do programa salvo no Gist do Github
-    Linguagens aceitas: Javascript, Java, C#, Python
+    DESAFIO: Integração de sistemas
 
     Nota: este é um problema real que já foi utilizado em nosso sistema de área de membros.
 
@@ -23,16 +21,17 @@ public class IntegracaoDeSistemas {
 
     Você deverá construir uma função para converter os dados CSV para o formato JSON, pois este JSON
     será utilizado para alimentar uma API web da plataforma de ensino.
+
     Você deverá fazer alguns ajustes nos dados:
-     A numeração da aula não deve aparecer no título do resultado final.
-     O final ".mp4" dos títulos deve ser removido.
+         A numeração da aula não deve aparecer no título do resultado final.
+         O final ".mp4" dos títulos deve ser removido.
 
     Sua função deve receber uma lista de strings no formato CSV, e sua função deve retornar uma string
     com os dados no formato JSON, como mostrado no exemplo a seguir.
     Sua função deve obedecer à assinatura especificada no final deste documento.
     Você deve gerar o JSON programaticamente, sem utilizar uma biblioteca externa de JSON.
-    Requisito não eliminatório: você deve retornar o JSON formatado com as devidas quebras de linha e
-    indentação.
+
+    Requisito não eliminatório: você deve retornar o JSON formatado com as devidas quebras de linha e indentação.
      */
 
     /*
@@ -134,8 +133,8 @@ public class IntegracaoDeSistemas {
             "duration": 486
         }
     ]
-     */
 
+     */
 
     /// Converts an array of CSV-formatted strings (representing video data) into a formatted JSON array.
     ///
