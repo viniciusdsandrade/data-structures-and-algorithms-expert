@@ -1,4 +1,4 @@
-package Strings;
+package Strings.exercicios;
 
 import static java.lang.Character.isDigit;
 

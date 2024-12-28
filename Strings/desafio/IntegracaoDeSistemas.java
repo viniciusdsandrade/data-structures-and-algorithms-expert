@@ -1,4 +1,4 @@
-package Strings;
+package Strings.desafio;
 
 import static java.lang.Integer.parseInt;
 

@@ -68,7 +68,7 @@ import static java.lang.String.valueOf;
     somando esses valores obtemos 22.
      */
 
-public static String[] totalDeliveryCost(int n, int[][] connections, int[] locations) {
+static String[] totalDeliveryCost(int n, int[][] connections, int[] locations) {
     // Create adjacency list representation of the graph
     List<List<Edge>> graph = new ArrayList<>();
 
@@ -94,7 +94,7 @@ public static String[] totalDeliveryCost(int n, int[][] connections, int[] locat
     return new String[]{valueOf(totalCost)};
 }
 
-private static class Edge implements Cloneable {
+static class Edge implements Cloneable {
     int destination;
     int cost;
 
@@ -253,6 +253,7 @@ static int[] dijkstra(List<List<Edge>> graph, int start, int n) {
 
     return distances;
 }
+
 static void main(String[] ignoredArgs) {
     // Test Case 1
     System.out.println("Test Case 1:");
