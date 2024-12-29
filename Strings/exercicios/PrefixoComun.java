@@ -31,7 +31,7 @@ public class PrefixoComun {
 
      */
 
-    public static String longestCommonPrefix(String[] v) {
+    static String longestCommonPrefix(String[] v) {
         // Verifica se o array é nulo ou vazio
         // Se for, retorna uma string vazia, pois não há prefixos para comparar
         if (v == null || v.length == 0) return "";

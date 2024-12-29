@@ -185,7 +185,7 @@ public class IntegracaoDeSistemas {
     ///
     /// @param videos an array of CSV lines, each including an ID, a title with a numeric prefix and `.mp4` suffix, and a duration.
     /// @return a `String` containing the formatted JSON array with the cleaned `id`, `title`, and `duration` fields.
-    public static String csvToJson(String[] videos) {
+    static String csvToJson(String[] videos) {
         StringBuilder json = new StringBuilder("[\n");
 
         String[] videoData;
