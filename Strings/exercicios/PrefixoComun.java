@@ -58,14 +58,6 @@ public class PrefixoComun {
         return prefixo;
     }
 
-    static void main(String[] ignoredArgs) {
-        String[] v1 = {"flowers", "flow", "flight"};
-        testLongestCommunPrefix(v1);
-
-        String[] v2 = {"dog", "racecar", "car"};
-        testLongestCommunPrefix(v2);
-    }
-
     static void testLongestCommunPrefix(String[] v) {
         System.out.println("\nInput:   " + Arrays.toString(v));
 
@@ -80,5 +72,13 @@ public class PrefixoComun {
 
         System.out.println("Output:  " + result);
         System.out.println("Runtime: " + runtime + "ns\n");
+    }
+
+    static void main(String[] ignoredArgs) {
+        String[] v1 = {"flowers", "flow", "flight"};
+        testLongestCommunPrefix(v1);
+
+        String[] v2 = {"dog", "racecar", "car"};
+        testLongestCommunPrefix(v2);
     }
 }

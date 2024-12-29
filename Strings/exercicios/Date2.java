@@ -47,7 +47,7 @@ public class Date2 {
         System.out.println("Runtime: " + runtTime + " ns");
     }
 
-    public static void main(String[] ignoredArgs) {
+    static void main(String[] ignoredArgs) {
         testFormatDate(21, 7, 2010);
         testFormatDate(1, 1, 2020);
         testFormatDate(31, 12, 2020);

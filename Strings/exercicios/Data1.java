@@ -75,5 +75,4 @@ public class Data1 {
         testExtractDateData(date2);
         testExtractDateData(date3);
     }
-
 }
