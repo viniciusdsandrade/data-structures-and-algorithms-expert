@@ -30,7 +30,7 @@ import static java.util.Arrays.copyOf;
 public static void main(String[] ignoredArgs) {
 
     // Ajuste o caminho absoluto do seu arquivo JSON conforme necessário:
-    String jsonPath = "C:\\Users\\Vinícius Andrade\\Desktop\\data-structures-and-algorithms-expert\\BuscaEOrdenacao\\input.json";
+    String jsonPath = "C:\\Users\\Vinícius Andrade\\Desktop\\data-structures-and-algorithms-expert\\BuscaEOrdenacao\\desafio\\input.json";
 
     try {
         // 1. Ler o array de strings do arquivo JSON
