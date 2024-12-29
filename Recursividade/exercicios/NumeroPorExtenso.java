@@ -1,4 +1,4 @@
-package Recursividade;
+package Recursividade.exercicios;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -238,7 +238,7 @@ public class NumeroPorExtenso {
         return sb.toString().trim();
     }
 
-    public static void main(String[] args) {
+    static void main(String[] ignoredArgs) {
         BigDecimal[] valores = {
                 new BigDecimal("0"),
                 new BigDecimal("1"),

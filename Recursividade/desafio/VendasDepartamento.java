@@ -1,8 +1,6 @@
-package Recursividade;
+package Recursividade.desafio;
 
 import java.util.List;
-
-import java.util.Arrays;
 
 import static java.lang.Double.parseDouble;
 import static java.util.Arrays.asList;
@@ -41,12 +39,12 @@ public class VendasDepartamento {
 
      */
 
-    public static double[] totalSales(List<String> sales, String department) {
+    static double[] totalSales(List<String> sales, String department) {
         return totalSalesHelper(sales, department, 0, 0.0);
     }
 
     // Helper recursive function
-    private static double[] totalSalesHelper(List<String> sales, String department, int index, double currentTotal) {
+    static double[] totalSalesHelper(List<String> sales, String department, int index, double currentTotal) {
 
         if (index == sales.size()) return new double[]{0.0, 0.0};
 
@@ -65,7 +63,7 @@ public class VendasDepartamento {
         return resultFromRest;
     }
 
-    public static void main(String[] args) {
+    static void main(String[] ignoredArgs) {
         List<String> sales = asList(
                 "8349,14/09/2024,899.9,ESPORTE",
                 "4837,17/09/2024,530.0,VESTUARIO",
@@ -82,5 +80,4 @@ public class VendasDepartamento {
         System.out.println((int) result[0] + " VENDAS");
         System.out.printf("TOTAL = $ %.2f\n", result[1]);
     }
-
 }

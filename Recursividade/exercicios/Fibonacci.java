@@ -1,4 +1,4 @@
-package Recursividade;
+package Recursividade.exercicios;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -8,36 +8,39 @@ import static java.lang.System.nanoTime;
 public class Fibonacci {
 
     /*
+
     Problema "fibonacci"
 
-    A sequência de Fibonacci começa com 0, 1, e depois cada número é a soma de seus dois antecessores: 0 1 1 2 3 5 8 13...
+    A sequência de Fibonacci começa com 0, 1, e depois cada número é
+    a soma de seus dois antecessores: 0 1 1 2 3 5 8 13...
 
-    Faça uma função para retornar o valor de uma dada posição da sequência de Fibonacci.
+    Faça uma função para retornar o valor de uma dada posição da
+    sequência de Fibonacci.
 
     Exemplo 1:
-    Entrada 0
-    Saída   0
+    Entrada: 0
+    Saída:   0
 
     Exemplo 2:
-    Entrada 0
-    Saída   1
+    Entrada: 0
+    Saída:   1
 
     Exemplo 3:
-    Entrada 6
-    Saída   8
+    Entrada: 6
+    Saída:   8
 
-    Assinaturas:
-    Java: public static int fib(int n)
+    Assinatura: public static int fib(int n)
+
      */
 
-    public static long fib(int n) {
+    static long fib(int n) {
         if (n == 0) return 0L;
         else if (n == 1) return 1L;
 
         return fib(n - 1) + fib(n - 2);
     }
 
-    public static long fibIterativo(int n) {
+    static long fibIterativo(int n) {
         if (n == 0) return 0L;
         else if (n == 1) return 1L;
 
@@ -52,7 +55,7 @@ public class Fibonacci {
         return c;
     }
 
-    public static BigInteger fibBigInteger(int n) {
+    static BigInteger fibBigInteger(int n) {
         if (n == 0) return BigInteger.ZERO;
         else if (n == 1) return BigInteger.ONE;
 
@@ -69,7 +72,7 @@ public class Fibonacci {
         return c;
     }
 
-    public static BigDecimal fibBigDecimal(int n) {
+    static BigDecimal fibBigDecimal(int n) {
         if (n == 0) return BigDecimal.ZERO;
         else if (n == 1) return BigDecimal.ONE;
 
@@ -86,13 +89,13 @@ public class Fibonacci {
         return c;
     }
 
-    public static void main(String[] args) {
-//        testFibBigIntegerLimits(100_000, 1_000_000, 10_000);
-//        testFibBigDecimalLimits(100_000, 1_000_000, 10_000);
+    static void main(String[] ignoredArgs) {
+        testFibBigIntegerLimits(100_000, 1_000_000, 10_000);
+        testFibBigDecimalLimits(100_000, 1_000_000, 10_000);
         for (int i = 0; i < 1_000; i++) testFibonacci(i);
     }
 
-    public static void testFibBigIntegerLimits(int minN, int maxN, int incremento) {
+    static void testFibBigIntegerLimits(int minN, int maxN, int incremento) {
         System.out.println("Testando fibBigInteger com valores de n de " + minN + " até " + maxN + " com incremento de " + incremento + "...\n");
 
         // Captura de possíveis erros de memória
@@ -132,7 +135,7 @@ public class Fibonacci {
         System.out.println("\nTeste finalizado.");
     }
 
-    public static void testFibBigDecimalLimits(int minN, int maxN, int incremento) {
+    static void testFibBigDecimalLimits(int minN, int maxN, int incremento) {
         System.out.println("Testando figBigDecimal com valores de n de "
                            + minN + " até " + maxN + " com incremento de " + incremento + "...\n");
 
@@ -168,13 +171,13 @@ public class Fibonacci {
             System.err.println("\nOutOfMemoryError atingido! Memória insuficiente para continuar os testes.");
         } catch (Exception e) {
             System.err.println("\nOcorreu um erro inesperado: " + e.getMessage());
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
 
         System.out.println("\nTeste finalizado.");
     }
 
-    public static void testFibonacci(int n) {
+    static void testFibonacci(int n) {
         System.out.println("\nInput: " + n);
 
         // ---------------------------
