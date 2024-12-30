@@ -29,7 +29,6 @@ public class MaxConsecutiveOnes {
 
      */
 
-    // Original implementation
     static int findMaxConsecutiveOnes(int[] nums) {
         int max = 0;
         int count = 0;
@@ -44,7 +43,6 @@ public class MaxConsecutiveOnes {
         return max;
     }
 
-    // Alternative implementation using while loop
     static int findMaxConsecutiveOnes2(int[] nums) {
         int maxOnes = 0;
         int i = 0;
@@ -88,7 +86,7 @@ public class MaxConsecutiveOnes {
         System.out.println();
     }
 
-    public static void main(String[] ignoredArgs) {
+    static void main(String[] ignoredArgs) {
         int[][] testCases = {
                 {1, 1, 0, 1, 1, 1},
                 {1, 0, 1, 1, 0, 1},
