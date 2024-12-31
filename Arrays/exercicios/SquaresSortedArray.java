@@ -15,18 +15,18 @@ public class SquaresSortedArray {
     each number sorted in non-decreasing order.
 
     Example 1:
-    Input: nums = [-4,-1,0,3,10]
-    Output: [0,1,9,16,100]
+    Input:  nums = [-4,-1,0,3,10]
+    Output: nums = [0,1,9,16,100]
     Explanation: After squaring, the array becomes [16,1,0,9,100].
     After sorting, it becomes [0,1,9,16,100].
 
     Example 2:
-    Input: nums = [-7,-3,2,3,11]
-    Output: [4,9,9,49,121]
+    Input:  nums = [-7,-3,2,3,11]
+    Output: nums = [4,9,9,49,121]
 
     Constraints:
-    1 <= nums.length <= 10^4
-    -10^4 <= nums[i] <= 10^4
+    1 ≤ nums.length ≤ 10^4
+    -10^4 ≤ nums[i] ≤ 10^4
     nums is sorted in non-decreasing order.
 
     Follow up: Squaring each element and sorting the new array is very trivial,
@@ -34,24 +34,69 @@ public class SquaresSortedArray {
 
      */
 
+    /*
+
+    A estratégia de dois ponteiros (two pointer) é útil nos seguintes contextos:
+
+    CASOS ÚTEIS:
+        1 - Processamento de arrays ordenados onde precisamos comparar elementos em diferentes posições
+        2 - Busca por pares de elementos que satisfazem uma condição (como soma igual a um valor alvo)
+        3 - Detecção de ciclos em listas ligadas
+        4 - Remoção de elementos duplicados em arrays ordenados
+        5 - Mesclagem de arrays ordenados (merge)
+        6 - Quando precisamos fazer operações que comparam elementos das extremidades
+        7 - Problemas que envolvem substrings ou subsequências
+        8 - Quando queremos evitar loops aninhados (reduzindo complexidade de O(n²) para O(n))
+
+    CASOS ONDE NÃO É RECOMENDADA:
+        1 - Arrays não ordenados onde a ordem é importante para o resultado
+        2 - Quando precisamos acessar elementos em posições arbitrárias do array
+        3 - Problemas que requerem busca em profundidade ou largura
+        4 - Quando precisamos manter um histórico de todas as operações
+        5 - Casos onde precisamos voltar a posições anteriores do array
+        6 - Quando a solução requer múltiplas passagens pelo array
+        7 - Em estruturas de dados não lineares (como árvores ou grafos)
+        8 - Quando a ordem de processamento dos elementos não pode ser sequencial ou das extremidades para o centro
+
+    A eficiência da técnica two pointer vem principalmente de sua capacidade de
+    reduzir a complexidade de tempo de O(n²) para O(n) em muitos casos,
+    mas isso só é possível quando o problema permite esse tipo de abordagem sequencial ou bidirecional.
+
+     */
+
     static int[] sortedSquares(int[] nums) {
+        // Obtém o tamanho do array de entrada
         int n = nums.length;
+
+        // Cria um novo array para armazenar os resultados
         int[] result = new int[n];
+
+        // Inicializa dois ponteiros: left no início e right no fim do array
         int left = 0;
         int right = n - 1;
+
+        // i será usado para preencher o array result de trás para frente
         int i = n - 1;
+
+        // Continua enquanto os ponteiros não se cruzarem
         while (left <= right) {
+            // Calcula os quadrados dos números nas posições left e right
             int leftSquare = nums[left] * nums[left];
             int rightSquare = nums[right] * nums[right];
+
+            // Compara os quadrados e coloca o maior valor na posição atual de result
             if (leftSquare > rightSquare) {
                 result[i] = leftSquare;
-                left++;
+                left++;  // Move o ponteiro left para a direita
             } else {
                 result[i] = rightSquare;
-                right--;
+                right--; // Move o ponteiro right para a esquerda
             }
+
+            // Move para a próxima posição a ser preenchida em result
             i--;
         }
+
         return result;
     }
 
