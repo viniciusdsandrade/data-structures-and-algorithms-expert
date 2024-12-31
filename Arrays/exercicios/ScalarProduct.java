@@ -69,7 +69,7 @@ public class ScalarProduct {
 
         double ratio = (double) times[slowest] / times[fastest];
 
-        System.out.println("scalarProduct result: " + results[0] + " runtime: " + times[0] + " ns");
+        System.out.println("scalarProduct1 result: " + results[0] + " runtime: " + times[0] + " ns");
         System.out.println("scalarProduct2 result: " + results[1] + " runtime: " + times[1] + " ns");
         System.out.printf("Razão (lento/rápido): %.2fx\n", ratio);
         System.out.println("Método mais rápido: scalarProduct" + (fastest + 1));
