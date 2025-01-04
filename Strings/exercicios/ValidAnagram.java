@@ -1,7 +1,10 @@
 package Strings.exercicios;
 
+import java.util.Arrays;
+
 import static java.lang.System.nanoTime;
 import static java.lang.System.out;
+import static java.util.Arrays.sort;
 
 public class ValidAnagram {
 
@@ -62,24 +65,72 @@ public class ValidAnagram {
         return true;
     }
 
-    static void testIsAnagram(String s, String t) {
-        out.println("\nInput: " + s + ", " + t);
+    // Implementação alternativa usando ordenação
+    static boolean isAnagram2(String s, String t) {
+        if (s.length() != t.length()) return false;
 
-        long startTime, endTime, runtTime;
-        boolean result;
+        char[] sChars = s.toCharArray();
+        char[] tChars = t.toCharArray();
 
-        startTime = nanoTime();
-        result = isAnagram(s, t);
-        endTime = nanoTime();
+        sort(sChars);
+        sort(tChars);
 
-        runtTime = endTime - startTime;
-
-        out.println("Output: " + result);
-        out.println("Runtime: " + runtTime + " ns");
+        return Arrays.equals(sChars, tChars);
     }
 
-    static void main(String[] ignoredArgs) {
-        testIsAnagram("anagram", "nagaram");
-        testIsAnagram("rat", "car");
+    static void testIsAnagram(String s, String t) {
+        out.println("Input 1: " + s);
+        out.println("Input 2: " + t);
+
+        long[] times = new long[2];
+        boolean[] results = new boolean[2];
+
+        // Teste da primeira implementação
+        long start = nanoTime();
+        results[0] = isAnagram(s, t);
+        times[0] = nanoTime() - start;
+
+        // Teste da segunda implementação
+        start = nanoTime();
+        results[1] = isAnagram2(s, t);
+        times[1] = nanoTime() - start;
+
+        int fastest = 0, slowest = 0;
+
+        if (times[1] < times[0]) {
+            fastest = 1;
+        } else {
+            slowest = 1;
+        }
+
+        double ratio = (double) times[slowest] / times[fastest];
+
+        out.println("isAnagram1 result: " + results[0] + " runtime: " + times[0] + " ns");
+        out.println("isAnagram2 result: " + results[1] + " runtime: " + times[1] + " ns");
+        out.printf("Razão (lento/rápido): %.2fx\n", ratio);
+        out.println("Método mais rápido: isAnagram" + (fastest + 1));
+        out.println();
+    }
+
+    public static void main(String[] ignoredArgs) {
+        // Casos de teste variados
+        String[][] testCases = {
+                {"anagram", "nagaram"},          // Anagrama verdadeiro
+                {"rat", "car"},                  // Não é anagrama
+                {"", ""},                        // Strings vazias
+                {"a", "a"},                      // String de um caractere
+                {"aaaaaa", "aaaaaa"},           // Caracteres repetidos
+                {"silent", "listen"},           // Outro anagrama verdadeiro
+                {"hello", "world"},             // Mesmo tamanho, não anagrama
+                {"pneumonoultramicroscopicsilicovolcanoconiosis",
+                        "pneumonoultramicroscopicsilicovolcanoconiosis"}, // Palavra muito longa
+                {"abcdefghijklmnopqrstuvwxyz",  // Todas as letras do alfabeto
+                        "zyxwvutsrqponmlkjihgfedcba"}
+        };
+
+        // Executa os testes
+        for (String[] testCase : testCases) {
+            testIsAnagram(testCase[0], testCase[1]);
+        }
     }
 }
