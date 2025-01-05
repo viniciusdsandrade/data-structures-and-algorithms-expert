@@ -2,12 +2,12 @@ package Recursividade.exercicios;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static java.math.BigDecimal.ONE;
 import static java.math.RoundingMode.DOWN;
 import static java.util.Arrays.stream;
+import static java.util.Collections.reverse;
 
 public class NumeroPorExtenso {
 
@@ -151,7 +151,7 @@ public class NumeroPorExtenso {
             valor /= 1000;
         }
         // Inverte para termos o grupo mais significativo primeiro
-        Collections.reverse(grupos);
+        reverse(grupos);
 
         List<String> partes = new ArrayList<>();
         int totalGrupos = grupos.size();
@@ -232,7 +232,7 @@ public class NumeroPorExtenso {
             sb.append(DEZENAS[dezenas]);
             // Se há unidades, adiciona " e "
             if (dezenas != 0 && unidades != 0) sb.append(" e ");
-            if (unidades != 0 && resto >= 20) sb.append(UNIDADES[unidades]);
+            if (unidades != 0) sb.append(UNIDADES[unidades]);
         }
 
         return sb.toString().trim();

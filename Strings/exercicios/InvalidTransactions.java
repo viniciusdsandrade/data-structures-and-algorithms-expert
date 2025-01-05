@@ -45,6 +45,24 @@ public class InvalidTransactions {
 
      */
 
+    // Classe auxiliar para parser as transações
+    static class Transaction {
+        String name;
+        int time;
+        int amount;
+        String city;
+        int originalIndex;
+
+        Transaction(String transaction, int index) {
+            String[] parts = transaction.split(",");
+            this.name = parts[0];
+            this.time = parseInt(parts[1]);
+            this.amount = parseInt(parts[2]);
+            this.city = parts[3];
+            this.originalIndex = index;
+        }
+    }
+
     static List<String> invalidTransactions(String[] transactions) {
         // Obtém o tamanho do array de transações para usar nas iterações
         int n = transactions.length;
@@ -138,23 +156,7 @@ public class InvalidTransactions {
         return new ArrayList<>(invalid);
     }
 
-    // Classe auxiliar para parser as transações
-    static class Transaction {
-        String name;
-        int time;
-        int amount;
-        String city;
-        int originalIndex;
 
-        Transaction(String transaction, int index) {
-            String[] parts = transaction.split(",");
-            this.name = parts[0];
-            this.time = parseInt(parts[1]);
-            this.amount = parseInt(parts[2]);
-            this.city = parts[3];
-            this.originalIndex = index;
-        }
-    }
 
     static void testInvalidTransactions(String[] transactions) {
         System.out.println("Input: " + Arrays.toString(transactions));
