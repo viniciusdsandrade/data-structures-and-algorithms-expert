@@ -48,13 +48,13 @@ public class Visitantes {
         ObjectMapper mapper = new ObjectMapper();
         try {
             // Lê o arquivo JSON para uma List<String>
-            List<String> visitors = mapper.readValue(new File(filePath), new TypeReference<List<String>>() {
+            List<String> visitors = mapper.readValue(new File(filePath), new TypeReference<>() {
             });
             // Aplica a função existente para contar visitantes únicos
             return total(visitors);
         } catch (IOException e) {
             System.err.println("Erro ao ler o arquivo JSON: " + e.getMessage());
-            return -1; // Em caso de erro, retorna -1 ou lança uma exceção
+            return -1; // Em caso de erro, retorna −1 ou lança uma exceção
         }
     }
 
