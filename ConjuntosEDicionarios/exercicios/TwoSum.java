@@ -120,7 +120,6 @@ public class TwoSum {
             System.out.println("twoSum3 resultado: " + Arrays.toString(results[2]));
         }
 
-        // Encontrar o método mais rápido e mais lento
         int fastest = 0, slowest = 0;
         for (int i = 1; i < times.length; i++) {
             if (times[i] < times[fastest]) {
@@ -133,8 +132,8 @@ public class TwoSum {
 
         // Calcular e exibir estatísticas
         double ratio = (double) times[slowest] / times[fastest];
-        System.out.println("twoSum1 (HashMap) runtime: " + times[0] + " ns");
-        System.out.println("twoSum2 (Força Bruta) runtime: " + times[1] + " ns");
+        System.out.println("twoSum1 (Força Bruta)  runtime: " + times[0] + " ns");
+        System.out.println("twoSum2 (HashMap)      runtime: " + times[1] + " ns");
         System.out.println("twoSum3 (Two Pointers) runtime: " + times[2] + " ns");
         System.out.printf("Razão (lento/rápido): %.2fx\n", ratio);
         System.out.println("Método mais rápido: twoSum" + (fastest + 1));

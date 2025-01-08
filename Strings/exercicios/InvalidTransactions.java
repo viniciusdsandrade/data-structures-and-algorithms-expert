@@ -156,8 +156,6 @@ public class InvalidTransactions {
         return new ArrayList<>(invalid);
     }
 
-
-
     static void testInvalidTransactions(String[] transactions) {
         System.out.println("Input: " + Arrays.toString(transactions));
 
