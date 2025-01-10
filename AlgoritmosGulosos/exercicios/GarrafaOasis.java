@@ -24,22 +24,19 @@ public class GarrafaOasis {
         Imprima o número máximo de garrafas que é possível encher.
 
     Entrada 1
-    5 10
-    8 5 4 3 2
-
+        5 10
+        8 5 4 3 2
     Saída 1: 3
 
     Entrada 2
         3 10
         6 3 2
-
     Saída 2: 2
 
      */
 
     private static final int WARMUP_RUNS = 5;
     private static final int TEST_RUNS = 10;
-
 
     static int contarGarrafasPreenchidasOriginal(int[] capacidades, int X) {
         // Ordena as capacidades em ordem crescente
@@ -83,8 +80,7 @@ public class GarrafaOasis {
         return garrafasPreenchidas;
     }
 
-
-    static void printDetailedProcess(int[] capacidades, int X, int expected) {
+    static void printDetailedProcess(int[] capacidades, int X) {
         // Cria uma cópia e ordena para não modificar o array original
         int[] sorted = capacidades.clone();
         sort(sorted);
@@ -151,11 +147,10 @@ public class GarrafaOasis {
             }
         }
 
-        if (allEqual) {
+        if (allEqual)
             System.out.println("✅ Todos os resultados das implementações Original e Alternativa estão corretos.");
-        } else {
+        else
             System.err.println("❌ Há diferenças nas implementações ou resultados incorretos.");
-        }
 
         // Calcular médias
         double avgOriginal = totalTimes[0] / (double) TEST_RUNS;
@@ -168,7 +163,7 @@ public class GarrafaOasis {
                 avgOriginal / avgAlternativa;
 
         // Imprimir resultados
-        System.out.printf("Tempo médio Original: %.2f ns%n", avgOriginal);
+        System.out.printf("Tempo médio Original   : %.2f ns%n", avgOriginal);
         System.out.printf("Tempo médio Alternativa: %.2f ns%n", avgAlternativa);
         System.out.printf("Razão (mais lenta / mais rápida): %.2fx%n", ratio);
         System.out.println("Implementação mais rápida: " + maisRapida);
@@ -195,7 +190,7 @@ public class GarrafaOasis {
         System.out.println("8 5 4 3 2\n");
 
         System.out.println("🔍 Detalhamento do Processo para o Caso 1:");
-        printDetailedProcess(capacidades1, X1, expected1);
+        printDetailedProcess(capacidades1, X1);
         System.out.println("🔍 Benchmark para o Caso 1:");
         testContarGarrafasPreenchidas(capacidades1, X1, expected1);
 
@@ -205,7 +200,7 @@ public class GarrafaOasis {
         System.out.println("6 3 2\n");
 
         System.out.println("🔍 Detalhamento do Processo para o Caso 2:");
-        printDetailedProcess(capacidades2, X2, expected2);
+        printDetailedProcess(capacidades2, X2);
         System.out.println("🔍 Benchmark para o Caso 2:");
         testContarGarrafasPreenchidas(capacidades2, X2, expected2);
     }
