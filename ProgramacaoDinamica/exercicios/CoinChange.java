@@ -1,8 +1,11 @@
 package exercicios;
 
-import static java.lang.Integer.MAX_VALUE;
+
+import java.util.Arrays;
+
 import static java.lang.Math.min;
 import static java.lang.System.nanoTime;
+import static java.util.Arrays.fill;
 
 public class CoinChange {
 
@@ -38,37 +41,43 @@ public class CoinChange {
 
      */
 
-    // Função que calcula o número mínimo de moedas necessárias para formar um valor
     static int coinChange(int[] coins, int amount) {
-        // Cria um array para armazenar as soluções dos subproblemas
-        // O índice representa o valor e o conteúdo representa o mínimo de moedas
+        // Cria um array dp de tamanho amount+1, onde cada índice i representa um valor monetário
+        // e dp[i] armazenará o número mínimo de moedas necessárias para formar o valor i
         int[] dp = new int[amount + 1];
 
-        // Itera por cada valor possível de 1 até o valor desejado
-        for (int i = 1; i <= amount; i++) {
-            // Inicializa cada posição com valor máximo
-            // Isso ajuda a identificar valores impossíveis de serem formados
-            dp[i] = MAX_VALUE;
+        // Preenche o array dp com um valor maior que o máximo possível (amount + 1)
+        // Este valor serve como "infinito" para o algoritmo, indicando valores ainda não processados
+        fill(dp, amount + 1);
 
-            // Para cada valor i, testa todas as moedas disponíveis
+        // Define que para formar o valor 0 são necessárias 0 moedas
+        // Este é o caso base do algoritmo de programação dinâmica
+        dp[0] = 0;
+
+        // Itera de 1 até amount, construindo as soluções de forma bottom-up
+        // Para cada valor i, vamos descobrir o número mínimo de moedas necessárias
+        for (int i = 1; i <= amount; i++) {
+            // Para cada valor i, testamos todas as moedas disponíveis
+            // Tentamos adicionar cada moeda à solução ótima do subproblema (i - coin)
             for (int coin : coins) {
-                // Verifica se é possível usar a moeda atual (se não passa do valor)
+                // Só podemos usar a moeda se ela não exceder o valor atual i
+                // i - coin ≥ 0 garante que não tentaremos acessar índices negativos no array
                 if (i - coin >= 0) {
-                    // Atualiza dp[i] com o mínimo entre:
-                    // - valor atual de dp[i]
-                    // - número de moedas necessárias para (i-coin) + 1 moeda atual
+                    // dp[i - coin] representa a solução ótima para o valor (i - coin)
+                    // Adicionamos 1 para contar a moeda atual
+                    // min() compara essa nova solução com a melhor solução encontrada até agora
                     dp[i] = min(dp[i], dp[i - coin] + 1);
                 }
             }
         }
 
-        // Retorna −1 se não for possível formar o valor (dp[amount] continua MAX_VALUE)
-        // Caso contrário, retorna o número mínimo de moedas necessárias
-        return dp[amount] == MAX_VALUE ? -1 : dp[amount];
+        // Se dp[amount] continuar maior que amount, significa que não encontramos solução
+        // Neste caso, retornamos −1. Caso contrário, retornamos o número mínimo de moedas
+        return dp[amount] > amount ? -1 : dp[amount];
     }
 
     static void testCoinChange(int[] coins, int amount) {
-        System.out.println("\nInput:   coins = " + java.util.Arrays.toString(coins) + ", amount = " + amount);
+        System.out.println("\nInput:   coins = " + Arrays.toString(coins) + ", amount = " + amount);
 
         long startTime, endTime, runtime;
         int result;
@@ -83,9 +92,17 @@ public class CoinChange {
         System.out.println("Runtime: " + runtime + " ns");
     }
 
-     static void main(String[] ignoredArgs) {
-        testCoinChange(new int[]{1, 2, 5}, 11);
-        testCoinChange(new int[]{2}, 3);
-        testCoinChange(new int[]{1}, 0);
+    static void main(String[] ignoredArgs) {
+        int[] coins = {1, 2, 5};
+        int amount = 11;
+        testCoinChange(coins, amount);
+
+        int amount2 = 3;
+        int[] coins2 = {2};
+        testCoinChange(coins2, amount2);
+
+        int amount3 = 0;
+        int[] coins3 = {1};
+        testCoinChange(coins3, amount3);
     }
 }
