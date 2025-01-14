@@ -140,7 +140,7 @@ public class TwoSum {
         System.out.println();
     }
 
-    public static void main(String[] args) {
+    static void main(String[] ignoredArgs) {
         // Casos de teste
         List<TestCase> testCases = asList(
                 new TestCase(new int[]{2, 7, 11, 15}, 9),              // Caso básico
