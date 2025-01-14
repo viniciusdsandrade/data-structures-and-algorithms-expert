@@ -7,7 +7,7 @@ import static java.lang.System.in;
 import static java.math.BigDecimal.ONE;
 import static java.math.RoundingMode.HALF_UP;
 
-public class ConversorHoras {
+class ConversorHoras {
 
     // Classe para armazenar os resultados da conversão
     static class HorasConvertidas {
@@ -15,6 +15,7 @@ public class ConversorHoras {
         int minutos;
         int segundos;
         int milissegundos;
+        int microsegundos;
         int nanosegundos;
 
         public HorasConvertidas(
@@ -22,12 +23,14 @@ public class ConversorHoras {
                 int minutos,
                 int segundos,
                 int milissegundos,
+                int microsegundos,
                 int nanosegundos
         ) {
             this.horas = horas;
             this.minutos = minutos;
             this.segundos = segundos;
             this.milissegundos = milissegundos;
+            this.microsegundos = microsegundos;
             this.nanosegundos = nanosegundos;
         }
 
@@ -39,8 +42,15 @@ public class ConversorHoras {
                     .append(segundos).append(" segundos, ")
                     .append(milissegundos).append(" milissegundos");
 
+            // Adiciona microsegundos apenas se for diferente de zero
+            if (microsegundos > 0) {
+                sb.append(", ").append(microsegundos).append(" microsegundos");
+            }
+
             // Adiciona nanosegundos apenas se for diferente de zero
-            if (nanosegundos > 0) sb.append(", ").append(nanosegundos).append(" nanosegundos");
+            if (nanosegundos > 0) {
+                sb.append(", ").append(nanosegundos).append(" nanosegundos");
+            }
 
             return sb.toString();
         }
@@ -72,11 +82,16 @@ public class ConversorHoras {
         BigDecimal[] partesMilissegundos = milissegundosDecimal.divideAndRemainder(ONE);
         int milissegundos = partesMilissegundos[0].intValue();
 
+        // Calcula os microsegundos
+        BigDecimal microsegundosDecimal = partesMilissegundos[1].multiply(new BigDecimal(1000));
+        BigDecimal[] partesMicrosegundos = microsegundosDecimal.divideAndRemainder(ONE);
+        int microsegundos = partesMicrosegundos[0].intValue();
+
         // Calcula os nanosegundos
-        BigDecimal nanosegundosDecimal = partesMilissegundos[1].multiply(new BigDecimal(1000));
+        BigDecimal nanosegundosDecimal = partesMicrosegundos[1].multiply(new BigDecimal(1000));
         int nanosegundos = nanosegundosDecimal.setScale(0, HALF_UP).intValue();
 
-        return new HorasConvertidas(horas, minutos, segundos, milissegundos, nanosegundos);
+        return new HorasConvertidas(horas, minutos, segundos, milissegundos, microsegundos, nanosegundos);
     }
 
     static void main(String[] ignoredArgs) {
