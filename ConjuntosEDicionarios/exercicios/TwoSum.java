@@ -122,12 +122,8 @@ public class TwoSum {
 
         int fastest = 0, slowest = 0;
         for (int i = 1; i < times.length; i++) {
-            if (times[i] < times[fastest]) {
-                fastest = i;
-            }
-            if (times[i] > times[slowest]) {
-                slowest = i;
-            }
+            if (times[i] < times[fastest]) fastest = i;
+            if (times[i] > times[slowest]) slowest = i;
         }
 
         // Calcular e exibir estatísticas
