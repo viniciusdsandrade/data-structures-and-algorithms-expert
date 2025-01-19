@@ -1,11 +1,9 @@
 package Recursividade.exercicios;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import static java.lang.Double.MAX_VALUE;
 import static java.lang.System.nanoTime;
 import static java.util.Arrays.asList;
 import static java.util.List.of;
@@ -28,8 +26,10 @@ public class MenorElemento {
 
      */
 
-    // Versão Recursiva
     static double minorRecursive(List<Double> list) {
+        if (list.isEmpty())
+            throw new IllegalArgumentException("A lista não pode estar vazia.");
+
         if (list.size() == 1) return list.getFirst();
 
         double minorOfRest = minorRecursive(list.subList(1, list.size()));
@@ -39,16 +39,20 @@ public class MenorElemento {
                 : minorOfRest;
     }
 
-    // Versão Iterativa
-    static double minorIterative(List<Double> list) {
-        if (list.isEmpty()) throw new IllegalArgumentException("A lista não pode estar vazia.");
+    static double minor(List<Double> list) {
+        if (list.isEmpty())
+            throw new IllegalArgumentException("A lista não pode estar vazia.");
+
+        if (list.size() == 1) return list.getFirst();
 
         double min = list.getFirst();
+
         for (Double num : list) {
             if (num < min) {
                 min = num;
             }
         }
+
         return min;
     }
 
@@ -67,7 +71,7 @@ public class MenorElemento {
 
         // Teste da versão iterativa
         start = nanoTime();
-        results[1] = minorIterative(list);
+        results[1] = minor(list);
         times[1] = nanoTime() - start;
 
         System.out.println("Resultado Recursivo: " + results[0]);
