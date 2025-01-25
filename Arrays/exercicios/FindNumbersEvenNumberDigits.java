@@ -89,7 +89,7 @@ public class FindNumbersEvenNumberDigits {
         results[2] = findNumbers3(nums);
         times[2] = nanoTime() - start;
 
-        // Find fastest and slowest
+        // Find the fastest and slowest
         int fastest = 0, slowest = 0;
         for (int i = 1; i < 3; i++) {
             if (times[i] < times[fastest]) fastest = i;
