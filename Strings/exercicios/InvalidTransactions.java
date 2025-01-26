@@ -40,8 +40,8 @@ public class InvalidTransactions {
     transactions.length <= 1000
     Each transactions[i] takes the form "{name},{time},{amount},{city}"
     Each {name} and {city} consist of lowercase English letters, and have lengths between 1 and 10.
-    Each {time} consist of digits, and represent an integer between 0 and 1000.
-    Each {amount} consist of digits, and represent an integer between 0 and 2000.
+    Each {time} consists of digits, and represents an integer between 0 and 1000.
+    Each {amount} consists of digits, and represents an integer between 0 and 2000.
 
      */
 
@@ -159,7 +159,9 @@ public class InvalidTransactions {
     static void testInvalidTransactions(String[] transactions) {
         System.out.println("Input: " + Arrays.toString(transactions));
 
-        List<String>[] results = new List[2];
+        List<List<String>> results = new ArrayList<>(2);
+        results.add(null); // Inicializa com dois elementos
+        results.add(null);
         long[] totalTimes = new long[2];
         final int WARMUP_RUNS = 5;
         final int TEST_RUNS = 10;
@@ -174,12 +176,12 @@ public class InvalidTransactions {
         for (int run = 0; run < TEST_RUNS; run++) {
             gc();
             long start = nanoTime();
-            results[0] = invalidTransactions(transactions.clone());
+            results.set(0, invalidTransactions(transactions.clone()));
             totalTimes[0] += nanoTime() - start;
 
             gc();
             start = nanoTime();
-            results[1] = invalidTransactions2(transactions.clone());
+            results.set(1, invalidTransactions2(transactions.clone()));
             totalTimes[1] += nanoTime() - start;
         }
 
@@ -200,8 +202,8 @@ public class InvalidTransactions {
         double ratio = avgTimes[slowest] / avgTimes[fastest];
 
         // Exibe resultados
-        System.out.println("invalidTransactions1 result: " + results[0]);
-        System.out.println("invalidTransactions2 result: " + results[1]);
+        System.out.println("invalidTransactions1 result: " + results.get(0));
+        System.out.println("invalidTransactions2 result: " + results.get(1));
         System.out.printf("Tempo médio invalidTransactions1: %.2f ns%n", avgTimes[0]);
         System.out.printf("Tempo médio invalidTransactions2: %.2f ns%n", avgTimes[1]);
         System.out.printf("Razão (lento/rápido): %.2fx%n", ratio);
