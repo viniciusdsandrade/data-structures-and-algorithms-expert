@@ -93,7 +93,7 @@ public class RotateString {
         rotateStringWithDebug("abcdefg", 2); // Saída esperada: "fgabcde"
 
         System.out.println("Teste 3:");
-        rotateStringWithDebug("abcdefg", -2); // Rotação à esquerda equivalente a k = 5 -> Saída: "cdefgab"
+        rotateStringWithDebug("abcdefg", -2); // Rotação à esquerda equivalente a k = 5 ⇾ Saída: "cdefgab"
 
         System.out.println("Teste 4:");
         rotateStringWithDebug("abcdefg", 0); // Sem rotação, saída: "abcdefg"
