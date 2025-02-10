@@ -150,7 +150,7 @@ public class OtimizandoValorArmazem {
 
      */
 
-    public static int maxWarehouseValue(int C, int N, int[] prices, int[] volume) {
+    static int maxWarehouseValue(int C, int N, int[] prices, int[] volume) {
         int[][] dp = new int[N + 1][C + 1];
         for (int i = 1; i <= N; i++) {
             for (int j = 1; j <= C; j++) {
@@ -164,44 +164,110 @@ public class OtimizandoValorArmazem {
         return dp[N][C];
     }
 
-    public static void main(String[] ignoredArgs) {
+    // Second implementation using 1D DP array (space optimized)
+    static int maxWarehouseValue2(int C, int N, int[] prices, int[] volume) {
+        if (C <= 0 || N == 0) return 0;
+        int[] dp = new int[C + 1];
+
+        for (int i = 0; i < N; i++) {
+            for (int w = C; w >= volume[i]; w--) {
+                dp[w] = max(dp[w], dp[w - volume[i]] + prices[i]);
+            }
+        }
+        return dp[C];
+    }
+
+    static void testWarehouseImplementations(int C, int N, int[] prices, int[] volume) {
+        System.out.println("\nTesting implementations for C=" + C + ", N=" + N);
+
+        int[] results = new int[2];
+        long[] totalTimes = new long[2];
+        final int WARMUP_RUNS = 5;
+        final int TEST_RUNS = 10;
+
+        // JVM warmup
+        for (int i = 0; i < WARMUP_RUNS; i++) {
+            maxWarehouseValue(C, N, prices.clone(), volume.clone());
+            maxWarehouseValue2(C, N, prices.clone(), volume.clone());
+        }
+
+        // Actual tests
+        for (int run = 0; run < TEST_RUNS; run++) {
+            System.gc();
+            long start = nanoTime();
+            results[0] = maxWarehouseValue(C, N, prices.clone(), volume.clone());
+            totalTimes[0] += nanoTime() - start;
+
+            System.gc();
+            start = nanoTime();
+            results[1] = maxWarehouseValue2(C, N, prices.clone(), volume.clone());
+            totalTimes[1] += nanoTime() - start;
+        }
+
+        // Calculate averages
+        double[] avgTimes = new double[2];
+        avgTimes[0] = totalTimes[0] / (double)TEST_RUNS;
+        avgTimes[1] = totalTimes[1] / (double)TEST_RUNS;
+
+        // Determine fastest
+        int fastest = avgTimes[1] < avgTimes[0] ? 1 : 0;
+        int slowest = 1 - fastest;
+
+        // Calculate ratio
+        double ratio = avgTimes[slowest] / avgTimes[fastest];
+
+        // Display results
+        System.out.println("maxWarehouseValue1 result: " + results[0]);
+        System.out.println("maxWarehouseValue2 result: " + results[1]);
+        System.out.printf("Average time maxWarehouseValue1: %.2f ns%n", avgTimes[0]);
+        System.out.printf("Average time maxWarehouseValue2: %.2f ns%n", avgTimes[1]);
+        System.out.printf("Ratio (slow/fast): %.2fx%n", ratio);
+        System.out.println("Fastest method: maxWarehouseValue" + (fastest + 1));
+
+        // Verify results match
+        if (results[0] != results[1]) {
+            System.out.println("WARNING: Results don't match!");
+        }
+    }
+
+    static void main(String[] ignoredArgs) {
         // Teste 1
-        testMaxWarehouseValue(
+        testWarehouseImplementations(
                 10, 4,
                 new int[]{5, 12, 8, 1},
                 new int[]{4, 8, 5, 3}
         );
 
         // Teste 2
-        testMaxWarehouseValue(
+        testWarehouseImplementations(
                 10, 4,
                 new int[]{5, 15, 8, 1},
                 new int[]{4, 8, 5, 3}
         );
 
         // Teste 3
-        testMaxWarehouseValue(
+        testWarehouseImplementations(
                 4, 3,
                 new int[]{1, 2, 3},
                 new int[]{4, 5, 1}
         );
 
         // Teste 4
-        testMaxWarehouseValue(
+        testWarehouseImplementations(
                 3, 3,
                 new int[]{1, 2, 3},
                 new int[]{4, 5, 6}
         );
 
         // Teste 5
-        testMaxWarehouseValue(
+        testWarehouseImplementations(
                 0, 3,
                 new int[]{20, 30, 40},
                 new int[]{10, 20, 30}
         );
 
         // Teste 6
-        testMaxWarehouseValue(
+        testWarehouseImplementations(
                 100, 0,
                 new int[]{},
                 new int[]{}
@@ -239,14 +305,14 @@ public class OtimizandoValorArmazem {
                 35, 40, 45, 50, 10, 20, 25, 30, 35, 40, 15, 25
         };
 
-        testMaxWarehouseValue(
+        testWarehouseImplementations(
                 1000, 200,
                 prices7,
                 volume7
         );
     }
 
-    public static void printParameters(int C, int N, int[] prices, int[] volume) {
+    static void printParameters(int C, int N, int[] prices, int[] volume) {
         StringBuilder json = new StringBuilder();
         json.append("Entrada: {\n");
         json.append("    \"C\": ").append(C).append(",\n");
@@ -277,7 +343,7 @@ public class OtimizandoValorArmazem {
         System.out.println(json);
     }
 
-    public static void testMaxWarehouseValue(int C, int N, int[] prices, int[] volume) {
+    static void testMaxWarehouseValue(int C, int N, int[] prices, int[] volume) {
         printParameters(C, N, prices, volume);
 
         long startTime = nanoTime();
