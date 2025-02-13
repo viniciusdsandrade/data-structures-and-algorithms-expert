@@ -43,14 +43,10 @@ class ConversorHoras {
                     .append(milissegundos).append(" milissegundos");
 
             // Adiciona microsegundos apenas se for diferente de zero
-            if (microsegundos > 0) {
-                sb.append(", ").append(microsegundos).append(" microsegundos");
-            }
+            if (microsegundos > 0) sb.append(", ").append(microsegundos).append(" microsegundos");
 
             // Adiciona nanosegundos apenas se for diferente de zero
-            if (nanosegundos > 0) {
-                sb.append(", ").append(nanosegundos).append(" nanosegundos");
-            }
+            if (nanosegundos > 0) sb.append(", ").append(nanosegundos).append(" nanosegundos");
 
             return sb.toString();
         }
@@ -91,7 +87,14 @@ class ConversorHoras {
         BigDecimal nanosegundosDecimal = partesMicrosegundos[1].multiply(new BigDecimal(1000));
         int nanosegundos = nanosegundosDecimal.setScale(0, HALF_UP).intValue();
 
-        return new HorasConvertidas(horas, minutos, segundos, milissegundos, microsegundos, nanosegundos);
+        return new HorasConvertidas(
+                horas,
+                minutos,
+                segundos,
+                milissegundos,
+                microsegundos,
+                nanosegundos
+        );
     }
 
     static void main(String[] ignoredArgs) {
@@ -105,7 +108,7 @@ class ConversorHoras {
             System.out.println("Conversão:");
             System.out.println(resultado);
         } catch (NumberFormatException e) {
-            System.out.println("Entrada inválida. Por favor, insira um número válido.");
+            System.err.println("Entrada inválida. Por favor, insira um número válido.");
         }
     }
 }
