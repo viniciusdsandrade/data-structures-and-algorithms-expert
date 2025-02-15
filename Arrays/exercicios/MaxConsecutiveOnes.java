@@ -73,7 +73,7 @@ public class MaxConsecutiveOnes {
         results[1] = findMaxConsecutiveOnes2(nums);
         times[1] = nanoTime() - start;
 
-        // Find fastest and slowest
+        // Find the fastest and slowest
         int fastest = 0, slowest = 0;
         if (times[1] < times[0]) fastest = 1;
 
