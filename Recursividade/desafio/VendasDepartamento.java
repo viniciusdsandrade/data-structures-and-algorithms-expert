@@ -10,16 +10,17 @@ public class VendasDepartamento {
     /*
 
     DESAFIO: Vendas do departamento
-    Forma de entrega: link do programa salvo no Gist do Github
-    Linguagens aceitas: Javascript, Java, C#, Python
+
     Você tem à disposição dados de registros de venda, onde cada registro está no formato CSV, e possui
     os campos: id da venda, data, preço total, e departamento onde a venda foi realizada.
     Você deve criar uma função que receba uma lista de registros de venda, e o nome de um departamento.
+
     A função deve retornar a quantidade e a soma total das vendas desse departamento. Utilize um array
     para representar esses dois dados de retorno. Veja as assinaturas da função ao final deste documento.
     Sua solução deve ser recursiva. Você pode ou não utilizar uma função recursiva auxiliar, conforme
     você achar mais conveniente.
     Seu programa deve imprimir os valores com mensagens auxiliares, conforme exemplo.
+
     Exemplo:
     Entrada Saída
     {

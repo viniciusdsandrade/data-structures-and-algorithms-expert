@@ -11,6 +11,7 @@ import static java.lang.Integer.parseInt;
 public class BancoDeDadosSemORM {
 
     /*
+
     DESAFIO: Banco de dados sem ORM
 
     Você foi contratado para trabalhar em um sistema legado que não utiliza ferramenta de ORM (mapeamento
@@ -86,7 +87,7 @@ public class BancoDeDadosSemORM {
     Vendas:
         8032: Meire Silva, $ 8000.00
 
-    Assinaturas: Java: static List<Department> convertRecords(String[] records)
+    Assinaturas: static List<Department> convertRecords(String[] records)
      */
 
     static List<Department> convertRecords(String[] records) {
@@ -127,7 +128,7 @@ public class BancoDeDadosSemORM {
         return departmentList;
     }
 
-    public static void main(String[] args) {
+    static void main(String[] ignoredArgs) {
         String[] records1 = {
                 "57,Vendas,8032,Meire Silva,8000.0,57",
                 "32,Estoque,4368,Dom Dias,7000.0,32",

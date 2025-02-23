@@ -5,6 +5,7 @@ import java.util.Stack;
 public class SistemaDeNavegacao {
 
     /*
+
     DESAFIO: Sistema de navegação
 
     Forma de entrega: link do programa salvo no Gist do Github
@@ -115,8 +116,7 @@ public class SistemaDeNavegacao {
     https://devsuperior.com.br
     Error: Forward error
 
-    Assinaturas:
-    Java: static void testNavigation(Browser browser, String[] commands)
+    Assinatura:  static void testNavigation(Browser browser, String[] commands)
 
      */
 
@@ -188,7 +188,7 @@ public class SistemaDeNavegacao {
         }
     }
 
-    public static void main(String[] args) {
+    static void main(String[] ignoredArgs) {
         // Caso de Teste 1
         String[] commands1 = {
                 "get-current",

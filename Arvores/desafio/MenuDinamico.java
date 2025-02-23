@@ -5,6 +5,7 @@ import java.util.*;
 public class MenuDinamico {
 
     /*
+    
     DESAFIO: Menu dinâmico
 
     Você está trabalhando em uma biblioteca que permite criação de menus dinâmicos em
@@ -28,9 +29,11 @@ public class MenuDinamico {
 
     Você deverá também criar um programa que chama a função generateTree, e imprime na saída o menu de
     forma hierárquica, mostrando cada item de menu e sua rota quando houver, conforme exemplos.
+
     Dica: use um dicionário (mapa) para armazenar as posições da árvore já instanciadas, e utilize o id do item de
     menu como chave deste dicionário. Isso vai te ajudar, pois quando você for processar um novo item de menu,
     vai ficar fácil acessar a posição do pai dele pelo id.
+
      */
 
     static class GenericTree<T> implements Cloneable {

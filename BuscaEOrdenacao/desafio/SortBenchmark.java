@@ -4,15 +4,16 @@ import static java.lang.System.nanoTime;
 import static java.util.Arrays.copyOf;
 
 /*
+
     DESAFIO: Sort benchmark
 
     Forma de entrega: link do programa salvo no Gist do Github
     Linguagens aceitas: Javascript, Java, C#, Python
     Você deve criar um programa de teste para efetuar um benchmark (teste de performance) nos seguintes
     algoritmos de busca:
-     Insertion sort
-     Bubble sort
-     Quick sort
+         Insertion sort
+         Bubble sort
+         Quick sort
 
     Seu programa deve ler um array de strings contido no Gist do link abaixo do exemplo de entrada. Seu
     programa deverá então efetuar a ordenação do array usando os três métodos de ordenação citados,
@@ -25,6 +26,7 @@ import static java.util.Arrays.copyOf;
     Insertion sort: 166ms
     Bubble sort:    517ms
     Quick sort:     8ms
+
 */
 
 public static void main(String[] ignoredArgs) {

@@ -25,18 +25,22 @@ public class OtimizandoValorArmazem {
     capacidade máxima C.
 
     Regras
+
     Você não pode armazenar frações de produtos; ou um produto inteiro é armazenado, ou não é.
     Só se pode comprar uma unidade de cada produto listado.
+
     A soma dos tamanhos dos produtos armazenados não pode exceder a capacidade total do armazém C.
     Não é preciso considerar as dimensões dos produtos, apenas o volume ocupado.
+
     Entrada
         ● Um número inteiro C representando a capacidade total do armazém (em metros cúbicos).
         ● Um número inteiro N representando o número de produtos disponíveis.
         ● Um array de inteiros prices de tamanho N, onde prices[i] é o preço de venda do produto i.
         ● Um array de inteiros volume[i] de tamanho N, onde volume[i] é o tamanho do produto i (em metros cúbicos).
+
     Saída
-    Um número inteiro representando o valor máximo dos produtos que podem ser armazenados no
-    armazém sem exceder sua capacidade.
+        Um número inteiro representando o valor máximo dos produtos que podem ser armazenados no
+        armazém sem exceder sua capacidade.
 
     Entrada 1
     {
@@ -144,9 +148,7 @@ public class OtimizandoValorArmazem {
 
     Saída 7: 78970
 
-
-    Assinaturas:
-    Java: public int maxWarehouseValue(int C, int N, int[] prices, int[] volume)
+    Assinatura: public int maxWarehouseValue(int C, int N, int[] prices, int[] volume)
 
      */
 
@@ -206,8 +208,8 @@ public class OtimizandoValorArmazem {
 
         // Calculate averages
         double[] avgTimes = new double[2];
-        avgTimes[0] = totalTimes[0] / (double)TEST_RUNS;
-        avgTimes[1] = totalTimes[1] / (double)TEST_RUNS;
+        avgTimes[0] = totalTimes[0] / (double) TEST_RUNS;
+        avgTimes[1] = totalTimes[1] / (double) TEST_RUNS;
 
         // Determine fastest
         int fastest = avgTimes[1] < avgTimes[0] ? 1 : 0;
